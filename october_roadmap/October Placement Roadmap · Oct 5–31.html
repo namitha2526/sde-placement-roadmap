@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>October Placement Roadmap · Oct 5–31</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f6f4f1; --card:#ffffff; --card2:#faf8fb; --text:#1d1a1f; --muted:#6b6670; --line:#e3dfe6;
+  --accent:#d6457d; --accent-ink:#ffffff; --accent-soft:#fbe6ee; --focus-line:#f0c4d5;
+  --easy:#1a8f5c; --med:#b86f00; --good:#1a8f5c; --warn:#b86f00; --bad:#c43045;
+  --shadow:0 1px 2px rgba(0,0,0,.04);
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c0b0d; --card:#141216; --card2:#19161c; --text:#f2eff4; --muted:#9a94a1; --line:#2a262d;
+    --accent:#ec6a9a; --accent-ink:#16101a; --accent-soft:#2f1b26; --focus-line:#4a2a3a;
+    --easy:#3fcf8e; --med:#f0a53a; --good:#3fcf8e; --warn:#f0a53a; --bad:#ff6b81; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c0b0d; --card:#141216; --card2:#19161c; --text:#f2eff4; --muted:#9a94a1; --line:#2a262d;
+  --accent:#ec6a9a; --accent-ink:#16101a; --accent-soft:#2f1b26; --focus-line:#4a2a3a;
+  --easy:#3fcf8e; --med:#f0a53a; --good:#3fcf8e; --warn:#f0a53a; --bad:#ff6b81; --shadow:none;
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 16px);color-scheme:light dark}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-text-size-adjust:100%}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font-family:inherit;color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px}
+
+/* header */
+.head{background:var(--bg);border-bottom:1px solid var(--line);padding:22px 0 16px}
+@media (min-width:820px){.head{position:sticky;top:env(safe-area-inset-top,0px);z-index:20}}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700;text-transform:uppercase}
+h1{margin:6px 0 6px;font-size:clamp(26px,5vw,36px);letter-spacing:-.02em;font-weight:800;line-height:1.1}
+.sub{color:var(--muted);margin:0 0 14px;font-size:15px}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 14px;font-size:14px;cursor:pointer;white-space:nowrap}
+.pill:hover{border-color:var(--accent)}
+.bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;flex:1}
+.bar>i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .25s}
+.barrow{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.barrow b{font-family:var(--mono);font-size:13px;min-width:38px;text-align:right}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px 14px;box-shadow:var(--shadow)}
+.stat b{font-family:var(--mono);font-size:21px}
+.stat b small{color:var(--muted);font-size:14px;font-weight:400}
+.stat span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:8px 15px;font-size:14px;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.chips .sp{flex:1}
+.chip.tog[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+
+/* intro + progress */
+.note{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:14px 16px;margin:20px 0 14px;color:var(--muted);font-size:14px}
+.note b{color:var(--text)}
+details.how{margin-top:10px}
+details.how summary{cursor:pointer;color:var(--accent);font-weight:600}
+details.how ol{margin:8px 0 0;padding-left:20px;columns:2;column-gap:28px}
+@media (max-width:640px){details.how ol{columns:1}}
+.panel{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:16px;margin-bottom:8px;box-shadow:var(--shadow)}
+.lab{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px;font-weight:500}
+.lab:first-child{margin-top:0}
+.lab em{font-style:normal;color:var(--muted);opacity:.85}
+.prog{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media (max-width:900px){.prog{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.prog{grid-template-columns:repeat(2,1fr)}}
+.pc{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card2)}
+.pc .n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.pc .v{font-family:var(--mono);font-size:18px;font-weight:700;margin:2px 0 6px}
+.pc .v small{color:var(--muted);font-weight:400;font-size:13px}
+.pc .bar{height:5px}
+
+/* sections and day cards */
+.sec{display:flex;align-items:center;gap:14px;margin:34px 0 12px}
+.sec h2{margin:0;font-size:17px;font-weight:700}
+.sec hr{flex:1;border:0;border-top:1px solid var(--line);margin:0}
+.sec span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.day{border:1px solid var(--line);background:var(--card);border-radius:14px;margin-bottom:12px;box-shadow:var(--shadow);overflow:hidden}
+.day.hidden,.sec.hidden{display:none}
+body.hide-done .day.done{display:none}
+.day.today{border-color:var(--accent)}
+.dh{width:100%;display:flex;align-items:center;gap:14px;padding:14px 16px;background:none;border:0;cursor:pointer;text-align:left}
+.num{font-family:var(--mono);font-weight:700;font-size:17px;background:var(--card2);border:1px solid var(--line);border-radius:10px;min-width:46px;height:46px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.day.done .num{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.dt{flex:1;min-width:0}
+.dt b{display:block;font-size:16.5px;font-weight:700;line-height:1.3}
+.dt small{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px}
+.tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;padding:2px 7px;border-radius:6px;margin-left:8px;vertical-align:2px;font-weight:700}
+.tag.mock{background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent)}
+.tag.now{background:var(--accent);color:var(--accent-ink)}
+.mini{width:70px}
+@media (max-width:520px){.mini{display:none}}
+.caret{color:var(--muted);transition:transform .15s;font-size:13px}
+.day.open .caret{transform:rotate(180deg)}
+.db{display:none;border-top:1px dashed var(--line);padding:6px 18px 18px}
+.day.open .db{display:block}
+
+.row{display:flex;align-items:flex-start;gap:11px;padding:7px 0;cursor:pointer}
+.row input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--accent);flex:none;cursor:pointer}
+.row span{flex:1}
+.row input:checked + span{text-decoration:line-through;opacity:.5}
+.qtag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:1px 6px;margin-left:6px;white-space:nowrap;vertical-align:1px}
+.goal{margin:12px 0 0;color:var(--text)}
+.prob{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;background:var(--card2)}
+.prob-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.prob-top a{font-weight:600;font-size:15.5px;color:var(--text)}
+.prob-top a:hover{color:var(--accent)}
+.badge{font-family:var(--mono);font-size:11px;font-weight:700;border:1px solid;border-radius:6px;padding:1px 7px;flex:none}
+.badge.E{color:var(--easy)} .badge.M{color:var(--med)}
+.meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px}
+.why{font-size:13.5px;color:var(--muted);margin:4px 0 8px}
+.steps{display:flex;flex-wrap:wrap;gap:6px 14px}
+.steps label{display:flex;align-items:center;gap:6px;font-size:13.5px;cursor:pointer}
+.steps input{width:16px;height:16px;accent-color:var(--accent);cursor:pointer}
+.steps input:checked + span{opacity:.5;text-decoration:line-through}
+.take,.score{font-family:var(--sans);font-size:13.5px;color:var(--text);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:7px 10px}
+.take{width:100%;margin-top:9px}
+.take:focus,.score:focus{outline:2px solid var(--accent);outline-offset:0;border-color:transparent}
+.nov{margin-top:12px;border:1px dashed var(--med);color:var(--med);border-radius:10px;padding:9px 12px;font-size:13.5px;font-weight:600}
+.focus{margin-top:16px;background:var(--accent-soft);border:1px solid var(--focus-line);border-radius:12px;padding:12px 14px}
+.focus .lab{color:var(--accent);margin:0 0 4px;font-weight:700}
+.focus p{margin:0}
+.swap{font-size:13.5px;color:var(--muted);border-left:3px solid var(--accent);padding:4px 0 4px 12px;margin:10px 0}
+
+/* mock */
+.part{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0;background:var(--card2)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 2px 29px}
+.tools button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 12px;font-size:13px;cursor:pointer}
+.tools button:hover{border-color:var(--accent);color:var(--accent)}
+.score{width:130px}
+.st{font-size:13px;font-weight:600}
+.st.good{color:var(--good)} .st.warn{color:var(--warn)} .st.bad{color:var(--bad)}
+.drawn{margin:6px 0 4px 8px;padding-left:34px;font-size:14px}
+.drawn li{margin:3px 0}
+.avg{font-weight:700;margin:10px 0 2px}
+table.sc{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+table.sc th,table.sc td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+table.sc th{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--card2)}
+table.sc td:nth-child(2){font-family:var(--mono);text-align:right;width:90px}
+
+/* footer */
+.tools2{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 8px}
+.bk{display:none;margin-top:8px}
+.bk.show{display:block}
+.bk textarea{width:100%;min-height:90px;font-family:var(--mono);font-size:12px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:8px}
+.bk .msg{font-size:13px;color:var(--muted);margin:6px 0}
+.danger[data-armed="1"]{background:var(--bad);border-color:var(--bad);color:#fff}
+footer{color:var(--muted);font-size:13px;margin:12px 0 40px}
+@media print{.head{position:static}.db{display:block!important}}
+</style>
+</head>
+<body>
+<header class="head">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="eyebrow">Campus placement prep · SDE</div>
+        <h1>October Roadmap · Oct 5–31</h1>
+        <p class="sub">CSE core first. Exactly 2 DSA problems every day. Tick as you go; progress saves automatically.</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+        <button class="pill" id="themeBtn" type="button" title="Switch theme">Theme: auto</button>
+        <button class="pill" id="goToday" type="button">Go to current day</button>
+      </div>
+    </div>
+    <div class="barrow"><div class="bar"><i id="overallBar"></i></div><b id="overallPct">0%</b></div>
+    <div class="stats">
+      <div class="stat"><b id="sDays">0<small>/27</small></b><span>Days done</span></div>
+      <div class="stat"><b id="sDsa">0<small>/54</small></b><span>DSA problems</span></div>
+      <div class="stat"><b id="sQs">0<small>/210</small></b><span>Interview Qs</span></div>
+      <div class="stat"><b id="sTasks">0<small>/0</small></b><span>Tasks</span></div>
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip" data-f="all" aria-pressed="true" type="button">All</button>
+      <button class="chip" data-f="1" aria-pressed="false" type="button">Week 1 · DBMS</button>
+      <button class="chip" data-f="2" aria-pressed="false" type="button">Week 2 · OS</button>
+      <button class="chip" data-f="3" aria-pressed="false" type="button">Week 3 · CN + OOP</button>
+      <button class="chip" data-f="4" aria-pressed="false" type="button">Week 4 · Backend + Final</button>
+      <span class="sp"></span>
+      <button class="chip tog" id="hideDone" aria-pressed="false" type="button">Hide done</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="note">
+    <b>Daily rhythm —</b> 2 DSA problems first (~2 h), then the day's CSE core (~2 h), a short side track (~1 h), then interview questions and revision (~45 min). If a problem is not solved in about 30 minutes, read the solution, understand it, and rewrite it from scratch tomorrow without looking.
+    <details class="how"><summary>The 10-step process for every DSA problem</summary>
+      <ol>
+        <li>Read the problem</li><li>Try independently</li><li>Identify the pattern</li><li>Write the approach</li><li>Code in Python</li>
+        <li>Test edge cases</li><li>Analyse time complexity</li><li>Analyse space complexity</li><li>Review the solution if stuck</li><li>Write a one-line takeaway</li>
+      </ol>
+      <p style="margin:8px 0 0">Each problem below has five tick boxes (Solve, Code, Test, Complexity, Review) plus a takeaway field that cover these steps. A problem counts as done when all five are ticked.</p>
+    </details>
+  </div>
+
+  <div class="panel">
+    <div class="lab">October progress</div>
+    <div class="prog" id="prog"></div>
+  </div>
+
+  <div id="app"></div>
+
+  <div class="tools2">
+    <button class="pill" id="bkCopy" type="button">Copy backup code</button>
+    <button class="pill" id="bkRestore" type="button">Restore from code</button>
+    <button class="pill danger" id="bkReset" type="button" data-armed="0">Reset all progress</button>
+  </div>
+  <div class="bk" id="bkBox">
+    <div class="msg" id="bkMsg"></div>
+    <textarea id="bkText" spellcheck="false" placeholder="Paste a backup code here, then press Apply restore"></textarea>
+    <div style="margin-top:6px"><button class="pill" id="bkApply" type="button" style="display:none">Apply restore</button></div>
+  </div>
+  <footer>Progress is saved in this browser only. Phone and laptop are separate, so use the backup code to move between them. Redis, Kafka, Kubernetes, Jenkins, microservices, distributed systems and advanced system design are saved for November.</footer>
+</main>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- constants ---------- */
+var START = new Date(2026, 9, 5);
+var STEPS = ["Solve","Code","Test","Complexity","Review"];
+var SUBJ_TARGET = {DBMS:30,SQL:25,OS:30,CN:30,OOP:25,COA:15,SE:15,Python:20,Backend:20};
+var SUBJ_NAME = {DBMS:"DBMS",SQL:"SQL",OS:"OS",CN:"CN",OOP:"OOP",COA:"COA",SE:"Soft. Eng.",Python:"Python",Backend:"Backend"};
+var WEEKS = {
+  1:{t:"Week 1 — DBMS + SQL + Python", d:"Oct 5–11"},
+  2:{t:"Week 2 — Operating Systems", d:"Oct 12–18"},
+  3:{t:"Week 3 — Computer Networks + OOP", d:"Oct 19–25"},
+  4:{t:"Week 4 — COA, Software Eng., Backend + Final", d:"Oct 26–31"}
+};
+
+/* [LeetCode#, name, difficulty, pattern, minutes, why it matters, priority] */
+var DSA = [
+[1,"Two Sum","E","Hash map",15,"Foundation of the hash-map lookup trick; asked everywhere","High"],
+[217,"Contains Duplicate","E","Hash set",10,"Quickest intro to set membership","Medium"],
+[242,"Valid Anagram","E","Frequency count",10,"Frequency pattern reused in strings and windows","High"],
+[169,"Majority Element","E","Frequency / Boyer-Moore",15,"Compares a hash map with the O(1)-space voting trick","Medium"],
+[121,"Best Time to Buy and Sell Stock","E","One pass / running min",15,"Classic max-profit idea; groundwork for DP","High"],
+[53,"Maximum Subarray","M","Kadane",25,"Most-asked array greedy/DP idea","High"],
+[303,"Range Sum Query - Immutable","E","Prefix sum",15,"Prefix sums power range queries","High"],
+[560,"Subarray Sum Equals K","M","Prefix sum + hash map",30,"Top interview pattern combining two ideas","High"],
+[283,"Move Zeroes","E","In-place array manipulation",15,"In-place rewriting with a write pointer","Medium"],
+[49,"Group Anagrams","M","Hashing with canonical key",25,"Teaches designing a hash key","High"],
+[125,"Valid Palindrome","E","Two pointers (strings)",10,"Basic converging pointers on strings","Medium"],
+[14,"Longest Common Prefix","E","String scan",15,"String traversal fundamentals","Low"],
+[392,"Is Subsequence","E","Two pointers",10,"Pointer-per-string technique","Medium"],
+[167,"Two Sum II - Input Array Is Sorted","M","Two pointers on sorted array",20,"Standard sorted-array two-pointer template","High"],
+[11,"Container With Most Water","M","Two pointers (greedy)",25,"Why moving the shorter side is safe","High"],
+[15,"3Sum","M","Sort + two pointers",35,"Very frequent; combines sorting, pointers, dedup","High"],
+[643,"Maximum Average Subarray I","E","Fixed sliding window",15,"Introduces the add-one, drop-one window update","High"],
+[567,"Permutation in String","M","Fixed window + frequency",30,"Window with a frequency map","High"],
+[3,"Longest Substring Without Repeating Characters","M","Variable window + set/map",30,"The classic variable-window problem","High"],
+[424,"Longest Repeating Character Replacement","M","Variable window + counts",35,"Window validity condition with a budget","High"],
+[209,"Minimum Size Subarray Sum","M","Variable window (shrink)",25,"Shrink-while-valid pattern","High"],
+[1004,"Max Consecutive Ones III","M","Variable window with constraint",30,"Window with at most k violations","Medium"],
+[20,"Valid Parentheses","E","Stack",15,"Most common stack question","High"],
+[232,"Implement Queue using Stacks","E","Queue via two stacks",20,"Tests understanding of stack and queue behaviour","Medium"],
+[155,"Min Stack","M","Stack with extra state",25,"Auxiliary state alongside a stack","High"],
+[739,"Daily Temperatures","M","Monotonic stack",30,"Entry point to monotonic stack problems","High"],
+[150,"Evaluate Reverse Polish Notation","M","Stack evaluation",25,"Expression evaluation with a stack","Medium"],
+[933,"Number of Recent Calls","E","Queue",10,"Simple queue as a time window","Low"],
+[704,"Binary Search","E","Binary search",10,"The template everything else builds on","High"],
+[74,"Search a 2D Matrix","M","Binary search on matrix",25,"Index mapping with binary search","Medium"],
+[153,"Find Minimum in Rotated Sorted Array","M","Binary search (rotated)",30,"Deciding which half is sorted","High"],
+[33,"Search in Rotated Sorted Array","M","Binary search (rotated)",35,"Very frequent interview problem","High"],
+[875,"Koko Eating Bananas","M","Binary search on answer",35,"Binary search on the answer space","High"],
+[34,"Find First and Last Position of Element in Sorted Array","M","Binary search (bounds)",25,"Lower and upper bound templates","High"],
+[206,"Reverse Linked List","E","Pointer reversal",15,"Core linked-list operation","High"],
+[21,"Merge Two Sorted Lists","E","Merge with dummy node",20,"Dummy-node technique","High"],
+[141,"Linked List Cycle","E","Fast/slow pointers",15,"Floyd's cycle detection","High"],
+[19,"Remove Nth Node From End of List","M","Two pointers with gap",25,"Gap pointer and edge cases","High"],
+[143,"Reorder List","M","Fast/slow + reverse + merge",40,"Combines three list techniques","Medium"],
+[2,"Add Two Numbers","M","Linked list simulation",30,"Carry handling on lists","Medium"],
+[104,"Maximum Depth of Binary Tree","E","Tree DFS",15,"Recursion on trees","High"],
+[102,"Binary Tree Level Order Traversal","M","Tree BFS",25,"Standard BFS template","High"],
+[98,"Validate Binary Search Tree","M","DFS with bounds",30,"BST property trap questions","High"],
+[236,"Lowest Common Ancestor of a Binary Tree","M","Tree DFS recursion",35,"Frequent tree question","High"],
+[215,"Kth Largest Element in an Array","M","Heap / quickselect",30,"Introduces heaps","High"],
+[347,"Top K Frequent Elements","M","Heap / bucket + hash map",30,"Top-K pattern","High"],
+[1971,"Find if Path Exists in Graph","E","Graph traversal",20,"Graph representation and DFS/BFS","Medium"],
+[200,"Number of Islands","M","Grid DFS/BFS",30,"Most-asked graph problem","High"],
+[994,"Rotting Oranges","M","Multi-source BFS",35,"BFS with levels","High"],
+[207,"Course Schedule","M","Topological sort / cycle detection",40,"Dependency graphs; a very common topic","High"],
+[238,"Product of Array Except Self","M","Prefix/suffix products",30,"Default revision pick (arrays). Swap if another area is weaker","High"],
+[142,"Linked List Cycle II","M","Fast/slow pointers",30,"Default revision pick (linked list). Swap if needed","Medium"],
+[56,"Merge Intervals","M","Sorting + intervals",25,"Final timed round; very common pattern","High"],
+[128,"Longest Consecutive Sequence","M","Hash set",30,"Final timed round; hash-set trick","High"]
+];
+
+var DAYS = [
+{n:1,w:1,title:"DBMS Basics + Keys",
+ goal:"Understand what a database system is and explain every key type with a real example.",
+ subj:"DBMS",
+ cse:["What is a DBMS? Why not just files?","DBMS vs RDBMS","Database vs table","Schema vs instance","Data independence (logical vs physical)","Primary key and foreign key","Candidate key and super key","Composite key"],
+ q:{DBMS:["What is a DBMS and why do we use it instead of plain files?","DBMS vs RDBMS: what exactly changes?","Explain schema vs instance with a student table.","Primary key vs candidate key vs super key. Give one example of each.","Can a foreign key be NULL? Can it reference a non-primary key?"],
+    Python:["List vs tuple: which is mutable, and when would you pick a tuple?","How do dict and set achieve O(1) average lookup?"]},
+ side:["SQL: write 10 SELECT / WHERE / ORDER BY queries on a sample table","Python: practise list, tuple, dict and set operations (add, remove, slice, iterate)"],
+ prac:"Install PostgreSQL, create a college database with students and courses tables, and label every key type on paper.",
+ focus:"Keys are the first thing a DBMS interviewer asks. Explain each with a student table, not a textbook line."},
+{n:2,w:1,title:"Constraints + DDL / DML",
+ goal:"Know what each constraint prevents and what error appears when it is violated.",
+ subj:"DBMS",
+ cse:["NOT NULL","UNIQUE","PRIMARY KEY","FOREIGN KEY (ON DELETE / ON UPDATE actions)","CHECK","DEFAULT","DDL vs DML vs DCL vs TCL"],
+ q:{DBMS:["PRIMARY KEY vs UNIQUE: what are the differences?","What happens to child rows when a parent row is deleted? (CASCADE, SET NULL, RESTRICT)","Why use a CHECK constraint instead of validating only in code?","DELETE vs TRUNCATE vs DROP: which category is each?"],
+    Python:["Mutable vs immutable: what happens to a and b after a = b; a += [1] for a list, compared with a tuple?","Why can a list not be a dict key?"]},
+ side:["SQL: write CREATE / ALTER / INSERT / UPDATE / DELETE statements for today's practical","Python: experiment with mutable vs immutable objects using id()"],
+ prac:"Create employees and departments tables using all six constraints, then try to violate each one and read the error message.",
+ focus:"For each constraint, say in one line what bad data it blocks."},
+{n:3,w:1,title:"Normalization",
+ goal:"Explain normalization through anomalies: show a bad table, show the problem, fix it.",
+ subj:"DBMS",
+ cse:["Functional dependency","Why normalize? Insert, update and delete anomalies","1NF","2NF (partial dependency)","3NF (transitive dependency)","BCNF basics","Denormalization: when and why"],
+ q:{DBMS:["What is normalization and what problem does it solve?","Explain 1NF, 2NF and 3NF with one example table.","What is a functional dependency? Give an example.","3NF vs BCNF: when do they differ?","When would you deliberately denormalize?"],
+    SQL:["Difference between WHERE and HAVING.","Write a query for the number of employees in each department that has more than 3 employees.","COUNT(*) vs COUNT(column) vs COUNT(DISTINCT column)."],
+    Python:["What are *args and **kwargs?","What is the LEGB rule? Explain global vs nonlocal."]},
+ side:["SQL: 10 queries using COUNT, SUM, AVG, MIN, MAX, GROUP BY and HAVING","Python: write functions with default args, *args, **kwargs and one closure"],
+ prac:"Take one unnormalized orders table and normalize it step by step to 3NF, writing the dependencies at each step.",
+ focus:"Normalization questions are really anomaly questions. Always start from the anomaly."},
+{n:4,w:1,title:"Joins + Subqueries",
+ goal:"Say out loud which rows each join keeps and which columns become NULL.",
+ subj:"DBMS",
+ cse:["INNER JOIN","LEFT and RIGHT JOIN","FULL OUTER JOIN","CROSS JOIN and SELF JOIN","Subquery in WHERE and FROM","Correlated subquery","IN vs EXISTS"],
+ q:{DBMS:["What is a JOIN? Explain INNER, LEFT, RIGHT and FULL with a small example.","What is a self join? Give a use case (employee and manager).","Correlated vs non-correlated subquery.","JOIN vs subquery: when is each better?"],
+    SQL:["Find employees who earn more than the average salary of their department.","Find customers who never placed an order (LEFT JOIN vs NOT IN vs NOT EXISTS).","Find the second highest salary without LIMIT.","Find duplicate emails in a table."],
+    Python:["Explain try / except / else / finally and when each block runs."]},
+ side:["Python: write functions that raise and handle custom exceptions"],
+ prac:"Build employees, departments and orders tables with sample data and write 8 join and subquery queries.",
+ focus:"This is a SQL-heavy day. Draw the tables and mark the matching rows before writing any query."},
+{n:5,w:1,title:"Transactions + ACID",
+ goal:"Explain ACID with a bank transfer and say what breaks if each property is missing.",
+ subj:"DBMS",
+ cse:["What is a transaction?","Atomicity","Consistency","Isolation","Durability","COMMIT, ROLLBACK, SAVEPOINT","Transaction states"],
+ q:{DBMS:["What is a transaction? Give the bank-transfer example.","Explain ACID with one real example for each letter.","Which component ensures atomicity and which ensures durability? (log, WAL)","What happens if the system crashes in the middle of a transaction?"],
+    SQL:["Write a CASE expression that labels salaries as Low, Medium or High.","What is a CTE and how is it different from a subquery?","Write a CTE that finds departments whose total salary is above the company average."],
+    Python:["What is an iterator vs an iterable?","What is a generator and why is it memory efficient?"]},
+ side:["SQL: practise CASE and CTE on your sample data","Python: write a custom iterator class and a generator function using yield"],
+ prac:"In psql, run a bank transfer inside BEGIN / COMMIT, repeat it with a deliberate error and ROLLBACK, and verify the balances.",
+ focus:"For each ACID letter, be ready with: what it means, and what goes wrong without it."},
+{n:6,w:1,title:"Concurrency + Window Functions",
+ goal:"Build the anomaly vs isolation-level table once and understand the logic behind it.",
+ subj:"DBMS",
+ cse:["Dirty read","Non-repeatable read","Phantom read","Isolation levels (Read Uncommitted to Serializable)","Locks: shared vs exclusive","Deadlocks in databases","Two-phase locking basics"],
+ q:{DBMS:["Explain dirty, non-repeatable and phantom reads with an example.","List the four isolation levels and which anomalies each prevents.","Shared lock vs exclusive lock.","How can a database deadlock occur and how is it resolved?"],
+    SQL:["What is a window function and how is it different from GROUP BY?","Write ROW_NUMBER, RANK and DENSE_RANK on salary within each department.","Find the top 2 earners per department.","Compute a running total of sales using SUM() OVER."],
+    Python:["What is a decorator? Write one that times a function.","What does functools.wraps do?"]},
+ side:["SQL: practise ROW_NUMBER, RANK, LAG, LEAD and running totals","Python: write a timing decorator and a decorator that takes arguments"],
+ prac:"Open two psql sessions and reproduce a non-repeatable read, then prevent it with a stricter isolation level.",
+ focus:"'Which isolation level prevents which anomaly' is a favourite. Work it out from first principles instead of memorizing the grid."},
+{n:7,w:1,title:"Indexing, Views, Triggers + Week 1 Mock",
+ goal:"Explain an index like a book's index, including the cost of keeping it updated. Then take the Week 1 mock.",
+ subj:"DBMS", mock:"w1",
+ cse:["What is an index?","Why indexes speed up reads (B-tree intuition)","When indexes hurt (writes, space, low selectivity)","Clustered vs non-clustered index","Views","Stored procedures basics","Triggers basics","SQL vs NoSQL"],
+ q:{DBMS:["What is an index and how does it speed up a query?","When can an index hurt performance?","Clustered vs non-clustered index.","SQL vs NoSQL: when would you choose each?"],
+    SQL:["Create an index and use EXPLAIN to prove it is used.","View vs materialized view."],
+    Python:["Explain Python memory management: reference counting and garbage collection.","Shallow copy vs deep copy."]},
+ side:["Python: test `is` vs `==`, small-integer caching and copy vs deepcopy in a script"],
+ prac:"Insert 100k rows, time a query before and after adding an index using EXPLAIN ANALYZE.",
+ focus:"Keep the mock honest: set a timer, no notes, answer out loud."},
+{n:8,w:2,title:"OS Basics + Processes",
+ goal:"Explain what an OS does and draw the process state diagram from memory.",
+ subj:"OS",
+ cse:["What is an OS and what are its functions?","Kernel","User mode vs kernel mode","System calls","Process","Process states","PCB (Process Control Block)"],
+ q:{OS:["What is an operating system and what does it do?","User mode vs kernel mode: why have both?","What is a system call? Name a few.","What is a process and what does its PCB contain? Draw the state diagram."],
+    SQL:["Write a query that returns the nth highest salary.","Delete duplicate rows, keeping the one with the lowest id."]},
+ side:["SQL: 20 minutes practising the two SQL questions on your sample database"],
+ prac:"In Python, print os.getpid() and os.getppid(), then start a child with subprocess and watch the process IDs.",
+ focus:"A process is a program in execution. Be ready to draw the five-state diagram."},
+{n:9,w:2,title:"Threads + Context Switching",
+ goal:"Answer 'process vs thread' with isolation, cost and sharing, not a memorized list.",
+ subj:"OS",
+ cse:["Thread","Process vs thread","Multithreading and its benefits","User-level vs kernel-level threads","Context switching: what is saved and restored","Cost of a context switch"],
+ q:{OS:["What is a thread and what do threads of one process share?","Process vs thread: give five differences.","User-level vs kernel-level threads.","What is a context switch and why is it expensive?","Why do web servers use threads or a thread pool?"]},
+ side:["Linux: ls, cd, pwd, cat, cp, mv, rm, chmod, chown; read a permission string like -rwxr-xr--"],
+ prac:"Write a Python script with 4 threads incrementing a shared counter and note what happens to the final value (a preview of race conditions).",
+ focus:"Process vs thread is the single most asked OS question."},
+{n:10,w:2,title:"CPU Scheduling",
+ goal:"Solve scheduling numericals confidently by drawing the Gantt chart first.",
+ subj:"OS",
+ cse:["FCFS","SJF (non-preemptive and preemptive)","Round Robin and time quantum","Priority scheduling and starvation","Waiting time","Turnaround time","Response time"],
+ q:{OS:["FCFS vs SJF vs Round Robin: pros and cons.","What is starvation and how does aging fix it?","Waiting vs turnaround vs response time.","How does the time quantum affect Round Robin?"],
+    SQL:["Rank employees by salary within a department using DENSE_RANK.","Find employees who earn more than their manager."]},
+ side:["SQL: 20 minutes practising the two SQL questions"],
+ prac:"Solve 3 numericals by hand (FCFS, SJF, Round Robin with q = 2) with Gantt charts, then write a small Python FCFS simulator.",
+ focus:"Gantt chart first, formulas second."},
+{n:11,w:2,title:"Synchronization",
+ goal:"Explain mutex vs semaphore clearly: ownership vs signalling.",
+ subj:"OS",
+ cse:["Race condition","Critical section problem","Mutex","Semaphore (binary and counting)","Monitor basics","Producer-consumer idea"],
+ q:{OS:["What is a race condition? Give an example.","What is the critical section problem and what are its three requirements?","Mutex vs semaphore: what are the differences?","Binary vs counting semaphore.","What is a monitor?"]},
+ side:["Linux: ps, top, kill, jobs, bg and fg; start and stop a process"],
+ prac:"Fix yesterday's thread counter using threading.Lock, then model producer-consumer with queue.Queue or semaphores.",
+ focus:"A mutex is a lock with an owner. A semaphore is a counter used to signal."},
+{n:12,w:2,title:"Deadlocks",
+ goal:"Explain deadlock with a real example and name the four conditions without hesitation.",
+ subj:"OS",
+ cse:["What is a deadlock?","Four necessary conditions (mutual exclusion, hold and wait, no preemption, circular wait)","Prevention","Avoidance (Banker's algorithm idea)","Detection and recovery","Deadlock vs starvation"],
+ q:{OS:["What is a deadlock? Give a real-life example.","Name and explain the four necessary conditions.","Prevention vs avoidance vs detection.","Deadlock vs starvation."],
+    SQL:["Find departments that have no employees.","Find the month-over-month change in revenue using LAG."]},
+ side:["SQL: 20 minutes practising the two SQL questions"],
+ prac:"Write a Python program where two threads take two locks in opposite order to cause a deadlock, then fix it with a consistent lock order.",
+ focus:"One holds, one waits, nobody lets go, and they wait in a circle."},
+{n:13,w:2,title:"Memory: Paging + Virtual Memory",
+ goal:"Explain virtual memory and paging in plain words, then translate an address by hand.",
+ subj:"OS",
+ cse:["RAM vs virtual memory","Paging","Page table and frames","Page fault","Segmentation basics","Paging vs segmentation","Internal vs external fragmentation"],
+ q:{OS:["What is virtual memory and why is it needed?","Explain paging with page table and frames.","What is a page fault and how is it handled?","Paging vs segmentation; internal vs external fragmentation."]},
+ side:["Linux: pipes, redirection, grep, find, head, tail, wc"],
+ prac:"Do 3 address-translation numericals: split a logical address into page number and offset.",
+ focus:"Virtual memory is the illusion of a large private address space backed by RAM and disk."},
+{n:14,w:2,title:"Page Replacement, Thrashing + Week 2 Mock",
+ goal:"Finish OS, revise the big five answers, then take the Week 2 mock.",
+ subj:"OS", mock:"w2",
+ cse:["FIFO page replacement","LRU","Optimal","Belady's anomaly","Thrashing and working set","OS revision: process vs thread, scheduling, deadlock, memory"],
+ q:{OS:["Compare FIFO, LRU and Optimal page replacement.","What is thrashing and how do you prevent it?","What is Belady's anomaly?","Walk through what happens when a process accesses a page that is not in RAM."],
+    Python:["What is the GIL and how does it affect threads?","Difference between a list comprehension and a generator expression."]},
+ side:["Python: revise the earlier Python questions by explaining them aloud"],
+ prac:"Simulate FIFO and LRU for a reference string by hand, then check your answer with a small Python script.",
+ focus:"Say each of these in 60 seconds: process vs thread, mutex vs semaphore, deadlock, paging, scheduling."},
+{n:15,w:3,title:"Networks: OSI + TCP/IP",
+ goal:"Connect every layer to a protocol and a device.",
+ subj:"CN",
+ cse:["Network types (LAN, MAN, WAN, PAN)","Topologies basics","OSI model: 7 layers","TCP/IP model: 4 layers","Layer responsibilities and PDUs","Encapsulation"],
+ q:{CN:["LAN vs MAN vs WAN.","List the 7 OSI layers with one job for each.","OSI vs TCP/IP model.","At which layer do switches, routers and hubs work?","What is encapsulation?","What is the PDU at each layer?"],
+    SQL:["Write a query to list the top 3 products by revenue in each category."]},
+ side:["SQL: 20 minutes on the SQL question"],
+ prac:"Draw the OSI stack and mark where Ethernet, IP, TCP, HTTP and DNS sit. Run ping and traceroute (tracert) once.",
+ focus:"Layer, protocol, device: always give all three."},
+{n:16,w:3,title:"IP, MAC, Ports, Sockets, DHCP, ARP",
+ goal:"Tell MAC, IP and port apart in one sentence each.",
+ subj:"CN",
+ cse:["IPv4 and IPv6","Private vs public IP and NAT","MAC address","MAC vs IP","Port numbers","Socket","DHCP","ARP"],
+ q:{CN:["IPv4 vs IPv6: why IPv6?","Private vs public IP and what NAT does.","MAC address vs IP address.","What is a port and what are the well-known ports (80, 443, 22, 53)?","What is a socket?","What do DHCP and ARP do?"],
+    Python:["What does if __name__ == '__main__' do?","How does a Python dict handle hash collisions?"]},
+ side:["Python: write the socket echo server and client from today's practical"],
+ prac:"Use ip addr (or ipconfig), arp -a and netstat -an to find your IP, MAC and open ports. Write a tiny Python socket echo server and client.",
+ focus:"MAC is identity on the local link, IP is location across networks, port picks the application."},
+{n:17,w:3,title:"TCP vs UDP + Handshakes",
+ goal:"TCP vs UDP and the three-way handshake are near-certain questions. Be crisp.",
+ subj:"CN",
+ cse:["TCP","UDP","TCP vs UDP","Three-way handshake","Four-way termination","Flow control (sliding window)","Congestion control basics"],
+ q:{CN:["TCP vs UDP with an example of when to use each.","Explain the three-way handshake step by step.","Why does closing a connection take four steps?","Flow control vs congestion control.","How does TCP guarantee reliable delivery?","Why do DNS and video streaming often use UDP?"],
+    SQL:["Find users who logged in on 3 consecutive days (window functions)."]},
+ side:["SQL: 20 minutes on the SQL question"],
+ prac:"Capture a TCP handshake with Wireshark or tcpdump if available; otherwise draw SYN, SYN-ACK, ACK with sequence numbers.",
+ focus:"Reliable and slower vs fast and best-effort. Know one real use for each."},
+{n:18,w:3,title:"DNS, HTTP/HTTPS, FTP, SMTP",
+ goal:"Answer 'what happens when you enter a URL' as one clean story.",
+ subj:"CN",
+ cse:["DNS and the resolution process","Recursive vs iterative queries and caching","HTTP","HTTPS","FTP","SMTP","What happens when you enter a URL in a browser"],
+ q:{CN:["How does DNS resolution work, step by step?","HTTP vs HTTPS.","FTP vs SMTP and their ports.","What happens when you type google.com in a browser?","What are DNS caching and TTL?","HTTP is stateless: what does that mean?","What is the difference between an A record and a CNAME?"],
+    SQL:["Write a recursive CTE that lists an employee's management chain."]},
+ side:["SQL: 20 minutes on the SQL question"],
+ prac:"Run nslookup (or dig) on a domain, then write the full 'enter a URL' flow from memory: DNS, TCP, TLS, HTTP, render.",
+ focus:"URL flow: DNS, then TCP, then TLS, then HTTP, then render. One line for each."},
+{n:19,w:3,title:"Web: Methods, Cookies, TLS, REST, CORS",
+ goal:"Understand how the web works well enough to explain cookies vs sessions and CORS.",
+ subj:"CN",
+ cse:["HTTP methods (GET, POST, PUT, PATCH, DELETE)","Status codes (2xx, 3xx, 4xx, 5xx)","Cookies","Sessions","Cookies vs sessions","TLS/SSL handshake basics","REST principles","WebSockets","CORS"],
+ q:{CN:["Cookies vs sessions.","What is TLS and how does the handshake secure a connection?","What is CORS and why does the browser enforce it?","WebSockets vs HTTP: when would you use WebSockets?","Common HTTP status codes: 200, 201, 301, 400, 401, 403, 404, 500."],
+    Backend:["What is a REST API? Name its constraints.","PUT vs PATCH vs POST.","What does idempotent mean and which HTTP methods are idempotent?","Authentication vs authorization."]},
+ side:["Backend: inspect one real request and response in your browser DevTools Network tab"],
+ prac:"Call a public API with curl or Python requests and inspect the method, status code, headers and cookies.",
+ focus:"A cookie lives in the browser. Session data lives on the server; the cookie only carries the session ID."},
+{n:20,w:3,title:"OOP I: Pillars + Polymorphism",
+ goal:"Give a real-world example for each pillar instead of reciting definitions.",
+ subj:"OOP",
+ cse:["Class and object","Encapsulation","Abstraction","Inheritance (types)","Polymorphism","Compile-time vs runtime polymorphism","Method overloading vs overriding","Constructor"],
+ q:{OOP:["What is a class and what is an object?","Explain encapsulation with a real-world example.","Abstraction vs encapsulation.","What is inheritance? Why is multiple inheritance risky (diamond problem)?","What is polymorphism? Give real-world examples.","Compile-time vs runtime polymorphism.","Overloading vs overriding.","What is a constructor? What types are there?","Is method overloading supported in Python? How do you simulate it?","Static vs instance members: what is the difference?"],
+    Python:["What is MRO in Python and how does it solve the diamond problem?"]},
+ side:["Python: write classes using __init__, @property, @classmethod and @staticmethod"],
+ prac:"Model a bank system in Python with encapsulation (private attributes), inheritance (Savings, Current) and polymorphism (withdraw).",
+ focus:"Tie each pillar to a real object: ATM, vehicle, payment method."},
+{n:21,w:3,title:"OOP II: SOLID + Week 3 Mock",
+ goal:"Explain interface vs abstract class and tell a tiny before/after story for each SOLID letter. Then take the Week 3 mock.",
+ subj:"OOP", mock:"w3",
+ cse:["Interface","Abstract class","Interface vs abstract class","Composition","Aggregation","Association","SOLID principles (SRP, OCP, LSP, ISP, DIP)","Coupling and cohesion"],
+ q:{OOP:["Abstract class vs interface.","Composition vs inheritance: which do you prefer and why?","Association vs aggregation vs composition with examples.","Explain the Single Responsibility Principle with an example.","Explain the Open/Closed Principle.","Explain Liskov Substitution with the square and rectangle example.","Interface Segregation vs Dependency Inversion.","What are coupling and cohesion? Which do you want high and low?","What is a design pattern? Name two you know (Singleton, Factory).","Why does 'program to an interface' make testing easier?"],
+    Python:["How do you create abstract classes in Python (abc module)?"]},
+ side:["Python OOP: dunder methods __str__, __repr__ and __eq__"],
+ prac:"Refactor your bank code to follow SOLID: add an abstract Account base class using abc and separate out a Notifier class.",
+ focus:"SOLID is easiest with a tiny before and after story for each letter."},
+{n:22,w:4,title:"COA I: CPU, Instruction Cycle, RISC vs CISC",
+ goal:"Narrate one instruction through the CPU. Also revise OOP with scenario questions.",
+ subj:"COA",
+ cse:["CPU: ALU, control unit, registers","Instruction cycle (fetch, decode, execute)","CPU clock and clock speed","Interrupts","RISC vs CISC","Buses basics"],
+ q:{COA:["What are the main components of a CPU?","Explain the fetch-decode-execute cycle.","What are registers and why are they fast?","What is an interrupt and how does the CPU handle it?","RISC vs CISC.","What does CPU clock speed mean? Is higher always faster?"],
+    OOP:["Design the classes for a parking lot system.","Design a library management system: which classes and relationships?","Model an ATM: where do you use inheritance and where composition?","Show overloading vs overriding with a small code snippet.","Why is composition often preferred over inheritance? Use Car and Engine."]},
+ side:["Git: init, add, commit, status, log, branch, merge; create a repo and push it to GitHub","Git: create and resolve a merge conflict on purpose"],
+ prac:"Draw a block diagram of CPU, memory and I/O and trace a = b + c through fetch, decode and execute.",
+ focus:"COA is about understanding, not numericals. Be able to narrate one instruction."},
+{n:23,w:4,title:"COA II: Memory Hierarchy + SDLC",
+ goal:"Explain why caches work, then cover SDLC, Waterfall, Agile and Scrum.",
+ subj:"COA",
+ cse:["Memory hierarchy","L1, L2 and L3 cache","Cache hit and miss; locality","RAM vs ROM","Virtual memory link to COA","SDLC phases","Waterfall","Agile and Scrum"],
+ q:{COA:["Explain the memory hierarchy and the speed, size and cost trade-off.","What are L1, L2 and L3 caches?","What are cache hit and miss? Temporal vs spatial locality.","RAM vs ROM.","How do cache and virtual memory relate?","SRAM vs DRAM."],
+    SE:["What is SDLC and what are its phases?","Waterfall vs Agile.","What is Scrum? Explain roles, sprint and backlog.","Functional vs non-functional requirements."],
+    Python:["What are the time complexities of list append, dict lookup and set membership?"]},
+ side:["Python: write a one-page complexity cheat sheet for list, dict, set and deque"],
+ prac:"Write a one-page comparison of Waterfall vs Agile using a sample project such as a food delivery app.",
+ focus:"Faster means smaller and costlier. Locality is why caches work."},
+{n:24,w:4,title:"Software Engineering II + pytest + Docker",
+ goal:"Cover testing types, CI/CD and code review. Run your first tests and container.",
+ subj:"SE",
+ cse:["Requirement gathering","Unit testing","Integration testing","System testing","Regression testing","Version control and branching strategies","CI/CD basics","Code review","Debugging approach"],
+ q:{SE:["Unit vs integration vs system testing.","What is regression testing and why automate it?","What is CI/CD? Explain the pipeline stages.","What makes a good code review?","How do you debug a failing production issue step by step?","Git merge vs rebase.","What is a branching strategy (feature branches, trunk-based)?","What is TDD, and what is the difference between a test case and a test plan?"]},
+ side:["pytest: write 5 tests including one fixture and one parametrized test","Docker: install Docker, run hello-world and an nginx container; understand images vs containers"],
+ nov:["Jenkins and full CI/CD servers (know the one-line idea only)"],
+ prac:"Write pytest tests for a small function and run them with pytest -v.",
+ focus:"Testing pyramid: many unit tests, fewer integration tests, very few end-to-end tests."},
+{n:25,w:4,title:"Backend I: HTTP, REST, CRUD, FastAPI",
+ goal:"Draw the request lifecycle and build a small CRUD API.",
+ subj:"Backend",
+ cse:["Client-server architecture","HTTP request and response anatomy","REST principles","CRUD mapped to HTTP methods","JSON","Status codes in APIs"],
+ q:{Backend:["Explain client-server architecture.","What is an API?","REST vs SOAP vs GraphQL at a high level.","Map CRUD operations to HTTP methods.","What is in an HTTP request and in a response?","What is JSON and why is it popular?","Path parameter vs query parameter.","What does stateless mean for REST?","What is an endpoint or route?","How do you version an API?"]},
+ side:["Postman: create a collection and test each endpoint","Backend: return correct status codes (200, 201, 404, 422) from each endpoint"],
+ nov:["Redis caching and Kafka (name the idea only)"],
+ prac:"Build a FastAPI (or Flask) app with in-memory CRUD for /items: list, get one, create, update, delete.",
+ focus:"Client to server to database and back. Be able to draw it."},
+{n:26,w:4,title:"Backend II: Auth, JWT, PostgreSQL + Revision",
+ goal:"Add a database and token auth to your API, prepare your project story, and revise everything.",
+ subj:"Backend",
+ cse:["Connect FastAPI to PostgreSQL (CRUD on a real table)","Authentication vs authorization","Password hashing basics","JWT: header, payload, signature","Token-based auth flow","API design basics (naming, pagination, errors)","Basic backend architecture (router, service, database)"],
+ q:{Backend:["What is JWT and how is it verified?","Session auth vs JWT auth.","Where should a JWT be stored and what are the risks?","Why hash passwords instead of encrypting them?","What are good REST API naming conventions?","Describe a basic layered backend architecture."],
+    COA:["Explain how one instruction executes end to end.","Why does cache improve performance?","RISC vs CISC in one minute."],
+    SE:["Agile or Waterfall for a startup? Why?","Explain your testing strategy for a new API.","How does CI/CD help a team?"]},
+ side:["Project: prepare a 2-minute explanation of your best project (problem, architecture, your role, hardest bug, what you would improve)","Full revision: keys, normalization, ACID, process vs thread, deadlock, TCP vs UDP, OOP pillars"],
+ nov:["Microservices, Kubernetes, distributed systems"],
+ prac:"Add PostgreSQL storage and one JWT-protected route to yesterday's app, then test it in Postman.",
+ swap:"DSA picks today are defaults. If you are weak in a pattern, swap one problem: Arrays/Hashing #128 · Sliding window #438 Find All Anagrams in a String · Stack #853 Car Fleet · Binary search #162 Find Peak Element · Linked list #138 Copy List with Random Pointer · Trees #230 Kth Smallest in a BST · Graphs #133 Clone Graph or #695 Max Area of Island.",
+ focus:"This is the heaviest day. If time runs short, finish the JWT concepts and questions, and keep the full auth build for after the assessment."},
+{n:27,w:4,title:"Final Campus-Style Assessment",
+ goal:"No new material today. Nine rounds, timed, no notes. Fill in your scores honestly; they decide what November focuses on.",
+ final:true,
+ swap:"Round 1 uses today's two DSA problems below as your timed round (60 minutes total). Rounds 2–8 draw random questions from the question bank.",
+ focus:"Treat it like the real thing: speak your answers aloud, as you would to an interviewer."}
+];
+
+/* mock definitions */
+var MOCKS = {
+ w1:{t:"Week 1 mock",day:7,parts:[
+   {k:"dsa",l:"DSA · today's 2 problems, timed (60 min)"},
+   {k:"dbms",l:"DBMS + SQL · 10 questions",subj:["DBMS","SQL"],n:10},
+   {k:"py",l:"Python · 5 questions",subj:["Python"],n:5}]},
+ w2:{t:"Week 2 mock",day:14,parts:[
+   {k:"dsa",l:"DSA · today's 2 problems, timed (60 min)"},
+   {k:"dbms",l:"DBMS + SQL · 10 questions",subj:["DBMS","SQL"],n:10},
+   {k:"os",l:"OS · 10 questions",subj:["OS"],n:10},
+   {k:"py",l:"Python · 5 questions",subj:["Python"],n:5}]},
+ w3:{t:"Week 3 mock",day:21,parts:[
+   {k:"dsa",l:"DSA · today's 2 problems, timed (60 min)"},
+   {k:"dbms",l:"DBMS + SQL · 10 questions",subj:["DBMS","SQL"],n:10},
+   {k:"os",l:"OS · 10 questions",subj:["OS"],n:10},
+   {k:"cn",l:"CN · 10 questions",subj:["CN"],n:10},
+   {k:"oop",l:"OOP · 5 questions",subj:["OOP"],n:5},
+   {k:"py",l:"Python · 5 questions",subj:["Python"],n:5}]}
+};
+var SQL_PROBLEMS = [
+ "Employees earning more than their department's average salary.",
+ "Top 2 salaries in each department (use a window function).",
+ "Departments that have no employees (use a LEFT JOIN).",
+ "Employees who earn more than their manager (self join).",
+ "Month-over-month revenue change from an orders table (use a CTE and LAG)."
+];
+var SQL_SCHEMA = "Use these tables: employees(id, name, dept_id, salary, manager_id), departments(id, name), orders(id, customer_id, amount, order_date).";
+var PROJECT_QS = [
+ "Explain your project in 2 minutes: the problem, the users and your role.",
+ "Walk through the architecture and why you chose this stack.",
+ "What was the hardest bug or design decision, and how did you solve it?",
+ "How does the project store data, and what would you change to scale it?",
+ "How did you test it, and what would you improve with one more month?"
+];
+var FINAL_PARTS = [
+ {k:"dsa",l:"Round 1 · DSA · 2 timed problems (today's two above)"},
+ {k:"dbms",l:"Round 2 · DBMS · 10 questions",subj:["DBMS"],n:10},
+ {k:"os",l:"Round 3 · OS · 10 questions",subj:["OS"],n:10},
+ {k:"cn",l:"Round 4 · CN · 10 questions",subj:["CN"],n:10},
+ {k:"oop",l:"Round 5 · OOP · 10 questions",subj:["OOP"],n:10},
+ {k:"sql",l:"Round 6 · SQL · 5 problems",list:SQL_PROBLEMS,pre:SQL_SCHEMA},
+ {k:"py",l:"Round 7 · Python · 10 questions",subj:["Python"],n:10},
+ {k:"be",l:"Round 8 · Backend · 10 questions",subj:["Backend"],n:10},
+ {k:"proj",l:"Round 9 · Project · 5 questions",list:PROJECT_QS},
+ {k:"coa",l:"Extra · COA quick check · 5 questions (fills the COA score)",subj:["COA"],n:5}
+];
+var SCORE_ROWS = [["dsa","DSA"],["dbms","DBMS"],["sql","SQL"],["os","OS"],["cn","CN"],["oop","OOP"],["coa","COA"],["py","Python"],["be","Backend"],["proj","Project"]];
+var TARGETS = [
+ ["CSE CORE",["Strong DBMS","Strong OS basics","Strong CN basics","Strong OOP","Basic COA","Software engineering basics"]],
+ ["DSA",["54 problems completed","Common patterns understood","Easy problems comfortable","Selected Medium problems solved","Complexity analysis understood"]],
+ ["SQL",["Comfortable with joins","Aggregations","Subqueries","CTE","Window functions"]],
+ ["PROGRAMMING",["Python fundamentals","OOP in Python","Common Python interview questions"]],
+ ["SDE",["HTTP","REST","Basic API development","Git","Linux","Docker basics"]]
+];
+
+/* ---------- state ---------- */
+var KEY = "octRoadmap.v1";
+var state = {done:{},notes:{},scores:{},draws:{},theme:"auto"};
+var mem = null;
+function load(){
+  try{ var s = localStorage.getItem(KEY); if(s){ var o = JSON.parse(s); if(o && typeof o==="object"){ state = merge(o); } } }
+  catch(e){ if(mem) state = merge(mem); }
+}
+function merge(o){ return {done:o.done||{},notes:o.notes||{},scores:o.scores||{},draws:o.draws||{},theme:o.theme||"auto"}; }
+function save(){
+  mem = JSON.parse(JSON.stringify(state));
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+}
+
+/* ---------- helpers ---------- */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function slug(name){ return name.toLowerCase().replace(/[^a-z0-9 ]/g," ").trim().split(/\s+/).join("-"); }
+function $(id){ return document.getElementById(id); }
+function dateOf(n){ var d = new Date(START.getTime()); d.setDate(d.getDate()+n-1); return d; }
+function fmt(n){ var d=dateOf(n); return d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"}); }
+function todayNum(){
+  var now = new Date(); var a = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var n = Math.round((a - START)/86400000)+1; return Math.max(1,Math.min(27,n));
+}
+function chk(k){ return state.done[k] ? " checked" : ""; }
+function dsaOf(n){ return [DSA[2*n-2], DSA[2*n-1]]; }
+
+/* question registry */
+var QS = [];
+DAYS.forEach(function(d){
+  if(!d.q) return;
+  Object.keys(d.q).forEach(function(s){
+    d.q[s].forEach(function(t,i){ QS.push({id:"d"+d.n+":q:"+s+":"+i,day:d.n,s:s,t:t}); });
+  });
+});
+
+/* keys per day */
+function dayKeys(d){
+  var k = [];
+  var n = d.n;
+  for(var p=0;p<2;p++) STEPS.forEach(function(s){ k.push("d"+n+":p"+p+":"+s); });
+  if(d.cse) d.cse.forEach(function(_,i){ k.push("d"+n+":cse:"+i); });
+  if(d.side) d.side.forEach(function(_,i){ k.push("d"+n+":side:"+i); });
+  QS.filter(function(q){return q.day===n;}).forEach(function(q){ k.push(q.id); });
+  if(d.prac) k.push("d"+n+":prac");
+  if(!d.final){ for(var r=0;r<3;r++) k.push("d"+n+":rev:"+r); }
+  var parts = d.final ? FINAL_PARTS : (d.mock ? MOCKS[d.mock].parts : []);
+  parts.forEach(function(p){ k.push("d"+n+":mock:"+p.k); });
+  for(var f=0;f<4;f++) k.push("d"+n+":fin:"+f);
+  return k;
+}
+DAYS.forEach(function(d){ d.keys = dayKeys(d); });
+
+/* ---------- render ---------- */
+function row(k,text,tag){
+  return '<label class="row"><input type="checkbox" data-k="'+k+'"'+chk(k)+'><span>'+esc(text)+(tag?'<em class="qtag">'+esc(tag)+'</em>':'')+'</span></label>';
+}
+function lab(t,x){ return '<div class="lab">'+esc(t)+(x?' <em>· '+esc(x)+'</em>':'')+'</div>'; }
+
+function problemHTML(n,p){
+  var d = DSA[2*n-2+p];
+  var k = "d"+n+":p"+p;
+  var steps = STEPS.map(function(s){ return '<label><input type="checkbox" data-k="'+k+':'+s+'"'+chk(k+':'+s)+'><span>'+s+'</span></label>'; }).join("");
+  return '<div class="prob"><div class="prob-top"><a href="https://leetcode.com/problems/'+slug(d[1])+'/" target="_blank" rel="noopener">#'+d[0]+' · '+esc(d[1])+'</a><span class="badge '+d[2]+'">'+d[2]+'</span></div>'+
+    '<div class="meta">'+esc(d[3])+' · ~'+d[4]+' min · priority '+d[6].toLowerCase()+'</div>'+
+    '<div class="why">'+esc(d[5])+'</div><div class="steps">'+steps+'</div>'+
+    '<input class="take" type="text" maxlength="200" placeholder="One-line takeaway" data-note="'+k+':take" value="'+esc(state.notes[k+":take"]||"")+'"></div>';
+}
+
+function partHTML(n,p){
+  var key = "d"+n+":"+p.k;
+  var h = '<div class="part"><label class="row"><input type="checkbox" data-k="'+key.replace(":"+p.k,":mock:"+p.k)+'"'+chk("d"+n+":mock:"+p.k)+'><span>'+esc(p.l)+'</span></label>';
+  h += '<div class="tools">';
+  if(p.subj) h += '<button type="button" data-draw="'+key+'">Draw questions</button>';
+  h += '<input class="score" type="number" min="0" max="100" inputmode="numeric" placeholder="Score / 100" data-score="'+key+'" value="'+esc(state.scores[key]===undefined?"":state.scores[key])+'">';
+  h += '<span class="st" data-status="'+key+'"></span></div>';
+  if(p.pre) h += '<p class="meta" style="margin:4px 0 0 29px">'+esc(p.pre)+'</p>';
+  if(p.list) h += '<ol class="drawn">'+p.list.map(function(t){return '<li>'+esc(t)+'</li>';}).join("")+'</ol>';
+  if(p.subj) h += '<ol class="drawn" id="draw-'+key+'"></ol>';
+  return h + '</div>';
+}
+
+function dayHTML(d){
+  var n = d.n, h = "";
+  var qs = QS.filter(function(q){return q.day===n;});
+  var meta = (d.final ? "2 timed DSA + 9 rounds" : "2 problems · "+(d.cse?d.cse.length:0)+" concepts · "+qs.length+" questions");
+  h += '<section class="day" id="day'+n+'" data-w="'+d.w+'" data-n="'+n+'">';
+  h += '<button class="dh" type="button" aria-expanded="false"><span class="num">'+(n<10?"0":"")+n+'</span><span class="dt"><b>'+esc(d.title)+(d.mock?'<span class="tag mock">MOCK</span>':'')+(d.final?'<span class="tag mock">FINAL</span>':'')+'<span class="tag now" data-now="'+n+'" style="display:none">TODAY</span></b><small>'+fmt(n)+' · '+meta+' · <span data-cnt="'+n+'">0/'+d.keys.length+'</span></small></span><span class="bar mini"><i data-bar="'+n+'"></i></span><span class="caret">▼</span></button>';
+  h += '<div class="db">';
+  h += '<p class="goal"><b>Today\'s goal.</b> '+esc(d.goal)+'</p>';
+  if(d.swap) h += '<div class="swap">'+esc(d.swap)+'</div>';
+  h += lab(d.final?"Round 1 · DSA · 2 problems":"DSA · 2 problems",d.final?"timed":"~2 hrs") + problemHTML(n,0) + problemHTML(n,1);
+  if(d.final) h += partHTML(n,FINAL_PARTS[0]);
+  if(d.cse) h += lab("CSE core · "+d.subj,"~2 hrs") + d.cse.map(function(t,i){return row("d"+n+":cse:"+i,t);}).join("");
+  if(d.side && d.side.length) h += lab("Side track","~1 hr") + d.side.map(function(t,i){return row("d"+n+":side:"+i,t);}).join("");
+  if(d.nov) d.nov.forEach(function(t){ h += '<div class="nov">🟡 NOVEMBER — DO NOT STUDY DEEPLY YET: '+esc(t)+'</div>'; });
+  if(qs.length) h += lab("Interview questions","~45 min · answer aloud") + qs.map(function(q,i){return row(q.id,q.t,q.s);}).join("");
+  if(d.prac) h += lab("Practical / coding") + row("d"+n+":prac",d.prac);
+  if(d.mock){
+    var M = MOCKS[d.mock];
+    h += lab(M.t,"timed, no notes") + M.parts.map(function(p){return partHTML(n,p);}).join("") + '<div class="avg" id="avg-'+n+'"></div>';
+  }
+  if(d.final){
+    h += lab("Rounds 2–9","timed, no notes") + FINAL_PARTS.slice(1).map(function(p){return partHTML(n,p);}).join("");
+    h += lab("Final scorecard") + '<table class="sc"><thead><tr><th>Subject</th><th>Score</th><th>Status</th></tr></thead><tbody id="scBody"></tbody></table><div class="avg" id="avg-27"></div>';
+  }
+  if(!d.final) h += lab("Revision") + ["Revise yesterday","Revise today's concepts","Recall without notes"].map(function(t,i){
+    if(n===1 && i===0) t = "Set up your notes document and skim the plan";
+    return row("d"+n+":rev:"+i,t);}).join("");
+  h += lab("Day complete");
+  var fin = d.final ? ["Both DSA problems done under time","All rounds attempted","Scorecard filled in","Weak areas written down for November"] : ["2 DSA problems","CSE concepts completed","Interview questions reviewed","Practical task completed"];
+  h += fin.map(function(t,i){return row("d"+n+":fin:"+i,t);}).join("");
+  h += '<div class="focus"><div class="lab">Today\'s focus</div><p>'+esc(d.focus)+'</p></div>';
+  h += '</div></section>';
+  return h;
+}
+
+function targetHTML(){
+  var h = '<div class="sec" id="secT"><h2>Final October target</h2><hr><span data-tcnt>0/0</span></div><div class="panel">';
+  TARGETS.forEach(function(g,gi){
+    h += lab(g[0]) + g[1].map(function(t,i){return row("tgt:"+gi+":"+i,t);}).join("");
+  });
+  return h + '</div>';
+}
+
+function render(){
+  var open = {};
+  Array.prototype.forEach.call(document.querySelectorAll(".day.open"),function(e){ open[e.id]=1; });
+  var h = "";
+  var lastW = 0;
+  DAYS.forEach(function(d){
+    if(d.w!==lastW){
+      var days = DAYS.filter(function(x){return x.w===d.w;});
+      h += '<div class="sec" data-sw="'+d.w+'"><h2>'+WEEKS[d.w].t+'</h2><hr><span>Day '+days[0].n+'–'+days[days.length-1].n+' · '+WEEKS[d.w].d+' · <b data-wcnt="'+d.w+'">0</b>/'+days.length+' done</span></div>';
+      lastW = d.w;
+    }
+    h += dayHTML(d);
+  });
+  h += targetHTML();
+  $("app").innerHTML = h;
+  Object.keys(open).forEach(function(id){ var e=$(id); if(e) setOpen(e,true); });
+  // restore drawn lists
+  Object.keys(state.draws).forEach(function(k){ showDraw(k); });
+  applyFilter(); updateAll();
+}
+
+function setOpen(card,on){
+  card.classList.toggle("open",on);
+  var b = card.querySelector(".dh"); if(b) b.setAttribute("aria-expanded",on?"true":"false");
+}
+
+/* ---------- draws ---------- */
+function drawConfig(key){
+  var parts = key.split(":"); var n = +parts[0].slice(1); var pk = parts[1];
+  var d = DAYS[n-1];
+  var list = d.final ? FINAL_PARTS : MOCKS[d.mock].parts;
+  var p = list.filter(function(x){return x.k===pk;})[0];
+  return {n:n,p:p};
+}
+function showDraw(key){
+  var el = $("draw-"+key); if(!el) return;
+  var ids = state.draws[key]||[];
+  var map = {}; QS.forEach(function(q){ map[q.id]=q; });
+  el.innerHTML = ids.map(function(id){ var q=map[id]; return q?'<li>'+esc(q.t)+'<em class="qtag">'+esc(q.s)+'</em></li>':""; }).join("");
+  var btn = document.querySelector('[data-draw="'+key+'"]');
+  if(btn) btn.textContent = ids.length ? "Redraw" : "Draw questions";
+}
+function doDraw(key){
+  var c = drawConfig(key); if(!c.p || !c.p.subj) return;
+  var maxDay = DAYS[c.n-1].final ? 27 : c.n;
+  var pool = QS.filter(function(q){ return c.p.subj.indexOf(q.s)>=0 && q.day<=maxDay; });
+  for(var i=pool.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=pool[i]; pool[i]=pool[j]; pool[j]=t; }
+  state.draws[key] = pool.slice(0,c.p.n).map(function(q){return q.id;});
+  save(); showDraw(key);
+}
+
+/* ---------- stats ---------- */
+function statusOf(v){
+  if(v===""||v===null||v===undefined||isNaN(+v)) return ["",""];
+  v = +v;
+  if(v>=75) return ["🟢 Strong","good"];
+  if(v>=50) return ["🟠 Needs revision","warn"];
+  return ["🔴 Weak","bad"];
+}
+function pct(a,b){ return b? Math.round(100*a/b):0; }
+
+function updateAll(){
+  var totalTasks=0, doneTasks=0, daysDone=0, dsaDone=0;
+  var wk = {1:0,2:0,3:0,4:0};
+  DAYS.forEach(function(d){
+    var done = d.keys.filter(function(k){return state.done[k];}).length;
+    totalTasks += d.keys.length; doneTasks += done;
+    var card = $("day"+d.n);
+    var full = done===d.keys.length;
+    if(full){ daysDone++; wk[d.w]++; }
+    for(var p=0;p<2;p++){
+      if(STEPS.every(function(s){return state.done["d"+d.n+":p"+p+":"+s];})) dsaDone++;
+    }
+    if(card){
+      card.classList.toggle("done",full);
+      var c = card.querySelector('[data-cnt="'+d.n+'"]'); if(c) c.textContent = done+"/"+d.keys.length;
+      var b = card.querySelector('[data-bar="'+d.n+'"]'); if(b) b.style.width = pct(done,d.keys.length)+"%";
+    }
+  });
+  Object.keys(wk).forEach(function(w){ var e=document.querySelector('[data-wcnt="'+w+'"]'); if(e) e.textContent = wk[w]; });
+  // subject counts
+  var sc = {}; Object.keys(SUBJ_TARGET).forEach(function(s){sc[s]=0;});
+  var qDone = 0;
+  QS.forEach(function(q){ if(state.done[q.id]){ sc[q.s]++; qDone++; } });
+  $("sDays").innerHTML = daysDone+'<small>/27</small>';
+  $("sDsa").innerHTML = dsaDone+'<small>/54</small>';
+  $("sQs").innerHTML = qDone+'<small>/'+QS.length+'</small>';
+  // target tasks
+  var tt=0,td=0; TARGETS.forEach(function(g,gi){ g[1].forEach(function(_,i){ tt++; if(state.done["tgt:"+gi+":"+i]) td++; }); });
+  var te = document.querySelector("[data-tcnt]"); if(te) te.textContent = td+"/"+tt;
+  $("sTasks").innerHTML = doneTasks+'<small>/'+totalTasks+'</small>';
+  var overall = pct(doneTasks,totalTasks);
+  $("overallBar").style.width = overall+"%"; $("overallPct").textContent = overall+"%";
+  // progress panel
+  var ph = '<div class="pc"><div class="n">DSA</div><div class="v">'+dsaDone+'<small> / 54</small></div><div class="bar"><i style="width:'+pct(dsaDone,54)+'%"></i></div></div>';
+  Object.keys(SUBJ_TARGET).forEach(function(s){
+    ph += '<div class="pc"><div class="n">'+SUBJ_NAME[s]+'</div><div class="v">'+sc[s]+'<small> / '+SUBJ_TARGET[s]+'</small></div><div class="bar"><i style="width:'+pct(sc[s],SUBJ_TARGET[s])+'%"></i></div></div>';
+  });
+  $("prog").innerHTML = ph;
+  updateScores();
+}
+
+function updateScores(){
+  Array.prototype.forEach.call(document.querySelectorAll("[data-status]"),function(e){
+    var s = statusOf(state.scores[e.getAttribute("data-status")]);
+    e.textContent = s[0]; e.className = "st "+s[1];
+  });
+  function avgOf(n,keys){
+    var vals = keys.map(function(k){return state.scores["d"+n+":"+k];}).filter(function(v){return v!==undefined && v!=="" && !isNaN(+v);}).map(Number);
+    if(!vals.length) return null;
+    return Math.round(vals.reduce(function(a,b){return a+b;},0)/vals.length);
+  }
+  Object.keys(MOCKS).forEach(function(m){
+    var M = MOCKS[m]; var a = avgOf(M.day,M.parts.map(function(p){return p.k;}));
+    var e = $("avg-"+M.day); if(!e) return;
+    if(a===null){ e.textContent = "Mock score: enter your part scores above"; return; }
+    e.textContent = "Mock score: "+a+" / 100 · "+statusOf(a)[0];
+  });
+  var body = $("scBody");
+  if(body){
+    body.innerHTML = SCORE_ROWS.map(function(r){
+      var v = state.scores["d27:"+r[0]]; var s = statusOf(v);
+      return '<tr><td>'+r[1]+'</td><td>'+((v===undefined||v==="")?"—":esc(v)+" / 100")+'</td><td class="st '+s[1]+'">'+s[0]+'</td></tr>';
+    }).join("");
+    var a = avgOf(27,SCORE_ROWS.map(function(r){return r[0];}));
+    $("avg-27").textContent = a===null ? "Overall: enter your round scores above" : "Overall: "+a+" / 100 · "+statusOf(a)[0];
+  }
+}
+
+/* ---------- filters ---------- */
+var filter = "all";
+function applyFilter(){
+  Array.prototype.forEach.call(document.querySelectorAll(".day"),function(e){ e.classList.toggle("hidden", filter!=="all" && e.getAttribute("data-w")!==filter); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-sw]"),function(e){ e.classList.toggle("hidden", filter!=="all" && e.getAttribute("data-sw")!==filter); });
+  var t = $("secT"); if(t){ t.classList.toggle("hidden", filter!=="all" && filter!=="4"); t.nextElementSibling.style.display = (filter!=="all" && filter!=="4") ? "none":""; }
+  Array.prototype.forEach.call(document.querySelectorAll("#chips .chip[data-f]"),function(c){ c.setAttribute("aria-pressed", c.getAttribute("data-f")===filter?"true":"false"); });
+}
+
+/* ---------- theme ---------- */
+function applyTheme(){
+  var r = document.documentElement;
+  if(state.theme==="dark"||state.theme==="light") r.setAttribute("data-theme",state.theme); else r.removeAttribute("data-theme");
+  $("themeBtn").textContent = "Theme: "+state.theme;
+}
+
+/* ---------- events ---------- */
+document.addEventListener("change",function(e){
+  var t = e.target;
+  if(t.matches && t.matches("input[type=checkbox][data-k]")){
+    var k = t.getAttribute("data-k");
+    if(t.checked) state.done[k]=true; else delete state.done[k];
+    save(); updateAll();
+  } else if(t.matches && t.matches("input[data-score]")){
+    var v = t.value; var key = t.getAttribute("data-score");
+    if(v===""){ delete state.scores[key]; }
+    else { var x = Math.max(0,Math.min(100,Math.round(+v))); state.scores[key]=x; t.value = x; }
+    save(); updateScores();
+  }
+});
+document.addEventListener("input",function(e){
+  var t = e.target;
+  if(t.matches && t.matches("input[data-note]")){ state.notes[t.getAttribute("data-note")] = t.value; save(); }
+  else if(t.matches && t.matches("input[data-score]")){
+    var key = t.getAttribute("data-score"); var s = statusOf(t.value);
+    var el = document.querySelector('[data-status="'+key+'"]'); if(el){ el.textContent=s[0]; el.className="st "+s[1]; }
+  }
+});
+document.addEventListener("click",function(e){
+  var t = e.target;
+  var dh = t.closest && t.closest(".dh");
+  if(dh){ var card = dh.parentNode; setOpen(card,!card.classList.contains("open")); return; }
+  var dr = t.closest && t.closest("[data-draw]");
+  if(dr){ doDraw(dr.getAttribute("data-draw")); return; }
+  var ch = t.closest && t.closest("#chips .chip[data-f]");
+  if(ch){ filter = ch.getAttribute("data-f"); applyFilter(); return; }
+});
+$("hideDone").addEventListener("click",function(){
+  var on = this.getAttribute("aria-pressed")!=="true";
+  this.setAttribute("aria-pressed",on?"true":"false"); document.body.classList.toggle("hide-done",on);
+});
+$("goToday").addEventListener("click",function(){
+  var n = todayNum(); filter="all"; applyFilter();
+  document.body.classList.remove("hide-done"); $("hideDone").setAttribute("aria-pressed","false");
+  var card = $("day"+n); setOpen(card,true);
+  card.scrollIntoView({behavior:"smooth",block:"start"});
+});
+$("themeBtn").addEventListener("click",function(){
+  state.theme = state.theme==="auto" ? "dark" : (state.theme==="dark" ? "light" : "auto");
+  save(); applyTheme();
+});
+
+/* backup / restore / reset */
+function showBk(msg,withText,applyBtn){
+  $("bkBox").classList.add("show"); $("bkMsg").textContent = msg;
+  $("bkText").style.display = withText ? "block":"none";
+  $("bkApply").style.display = applyBtn ? "inline-block":"none";
+}
+function encode(){ return btoa(unescape(encodeURIComponent(JSON.stringify(state)))); }
+function decode(s){ return JSON.parse(decodeURIComponent(escape(atob(s.trim())))); }
+$("bkCopy").addEventListener("click",function(){
+  var code = encode();
+  showBk("Backup code ready. Copy it and paste it on your other device with Restore from code.",true,false);
+  $("bkText").value = code;
+  try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(code).then(function(){ $("bkMsg").textContent = "Backup code copied to the clipboard (also shown below)."; },function(){ $("bkText").select(); });
+    } else { $("bkText").select(); }
+  }catch(err){ $("bkText").select(); }
+});
+$("bkRestore").addEventListener("click",function(){
+  showBk("Paste a backup code below and press Apply restore. This replaces the progress in this browser.",true,true);
+  $("bkText").value = ""; $("bkText").focus();
+});
+$("bkApply").addEventListener("click",function(){
+  try{
+    var o = decode($("bkText").value);
+    if(!o || typeof o!=="object" || !o.done) throw new Error("bad");
+    var theme = state.theme; state = merge(o); state.theme = theme;
+    save(); render(); applyTheme();
+    showBk("Progress restored.",false,false);
+  }catch(err){ showBk("That backup code could not be read. Check that you copied the whole code.",true,true); }
+});
+$("bkReset").addEventListener("click",function(){
+  var b = this;
+  if(b.getAttribute("data-armed")!=="1"){
+    b.setAttribute("data-armed","1"); b.textContent = "Click again to erase everything";
+    setTimeout(function(){ b.setAttribute("data-armed","0"); b.textContent = "Reset all progress"; },4000);
+    return;
+  }
+  b.setAttribute("data-armed","0"); b.textContent = "Reset all progress";
+  var theme = state.theme; state = {done:{},notes:{},scores:{},draws:{},theme:theme};
+  save(); render(); showBk("All progress has been reset.",false,false);
+});
+
+/* ---------- init ---------- */
+load(); applyTheme(); render();
+var tn = todayNum();
+var nowEl = document.querySelector('[data-now="'+tn+'"]');
+var nowDate = new Date();
+if(nowDate >= START && nowDate < dateOf(28)){
+  if(nowEl) nowEl.style.display = "inline-block";
+  $("day"+tn).classList.add("today");
+}
+setOpen($("day"+tn),true);
+})();
+</script>
+</body>
+</html>
